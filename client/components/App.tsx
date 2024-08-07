@@ -1,16 +1,17 @@
-import { useFruits } from '../hooks/useFruits.ts'
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
-function App() {
-  const { data } = useFruits()
+export default function App() {
+  const organisations = useQuery(api.organisations.get);
 
   return (
     <>
       <div className="app">
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>{data && data.map((fruit) => <li key={fruit}>{fruit}</li>)}</ul>
+        <h1 className="text-3xl">Finder</h1>
+        <em>Seek and you shall Find</em>
+        <br />
+        {organisations?.map(({ _id, name }) => <div key={_id}>{name}</div>)}
       </div>
     </>
   )
 }
-
-export default App
