@@ -1,7 +1,9 @@
 import { defineSchema, defineTable } from "convex/server";
+import { authTables } from "@convex-dev/auth/server";
 import { v } from "convex/values";
 
-export default defineSchema({
+const schema =  defineSchema({
+  ...authTables,
   organisations: defineTable({
     about: v.array(v.string()),
     locations: v.array(v.string()),
@@ -11,3 +13,5 @@ export default defineSchema({
     size: v.float64(),
   }),
 });
+ 
+export default schema;
